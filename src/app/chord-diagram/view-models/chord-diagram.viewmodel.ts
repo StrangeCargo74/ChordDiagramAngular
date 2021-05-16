@@ -1,4 +1,4 @@
-import { ascending } from 'd3-array';
+import { descending } from 'd3-array';
 import { chord } from 'd3-chord';
 import { IGroupDetails } from './chord-group-details.interface';
 import { ChordGroupViewModel } from './chord-group.viewmodel';
@@ -10,7 +10,10 @@ export class ChordDiagramViewModel{
     public chordVms: Array<ChordViewModel>=[];
 
     public constructor(inputMatrix:number[][], radius: number, groupDetails : IGroupDetails[]){
-        const chordLayout = chord().padAngle(0.024).sortSubgroups(ascending);
+        const chordLayout = chord().padAngle(10 / (radius-10))
+                                    .sortSubgroups(descending)
+                                    .sortChords(descending)
+                                    
         const chords = chordLayout(inputMatrix);
     
         if(chords){

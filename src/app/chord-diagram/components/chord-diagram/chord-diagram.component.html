@@ -1,20 +1,17 @@
 <svg width="500" height="500" viewBox="-250 -250 500 500">
-    <defs>
-        <linearGradient *ngFor="let chord of chordDiagramVm.chordVms" 
-        [attr.id]="chord?.gradient_id" 
-        [attr.x1]="chord?.gradient_x1" 
-        [attr.y1]="chord?.gradient_y1" 
-        [attr.x2]="chord?.gradient_x2" 
-        [attr.y2]="chord?.gradient_y2"
-        gradientUnits="userSpaceOnUse">
-            <stop offset="0%" [attr.stop-color]="chord?.sourceGroup?.colour" />
-            <stop offset="100%" [attr.stop-color]="chord?.targetGroup?.colour" />
-        </linearGradient>
-    </defs>
     <g id="outer-ring">
-        <path *ngFor="let group of chordDiagramVm.chordGroups" [attr.d]="group?.path" [attr.fill]="group?.colour"></path>
+        <g *ngFor="let group of chordDiagramVm.chordGroups" >
+            <path [attr.id]="group?.name" [attr.d]="group?.path" [attr.fill]="group?.colour">
+                <title>{{ group?.tooltip}}</title>
+            </path>
+            <text dy="-3">
+                <textPath [attr.href]="group?.href">{{group?.name}}</textPath>
+            </text>
+        </g>
     </g>
     <g id="chords">
-        <path *ngFor="let chord of chordDiagramVm.chordVms" [attr.d]="chord?.path" [attr.fill]="chord?.gradient_URL" opacity="0.8"></path>
+        <path class="chord-path" *ngFor="let chord of chordDiagramVm.chordVms" [attr.d]="chord?.path" [attr.fill]="chord?.sourceGroup?.colour" [attr.stroke]="chord?.sourceGroup?.colour" opacity="0.8">
+            <title>{{ chord?.tooltip}}</title>
+        </path>
     </g>
 </svg>
