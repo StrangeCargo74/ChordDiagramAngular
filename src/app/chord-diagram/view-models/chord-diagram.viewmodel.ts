@@ -1,15 +1,15 @@
 import { descending } from 'd3-array';
 import { chord } from 'd3-chord';
-import { IGroupDetails } from './chord-group-details.interface';
-import { ChordGroupViewModel } from './chord-group.viewmodel';
+import { IPhoneBrand } from '../interfaces/phone-brand.interface';
+import { PhoneBrandViewModel } from './phone-brand.viewmodel';
 import { ChordViewModel } from './chord-viewmodel';
 
 export class ChordDiagramViewModel{
 
-    public chordGroups: Array<ChordGroupViewModel> = [];
+    public phoneBrandVms: Array<PhoneBrandViewModel> = [];
     public chordVms: Array<ChordViewModel>=[];
 
-    public constructor(inputMatrix:number[][], radius: number, groupDetails : IGroupDetails[]){
+    public constructor(inputMatrix:number[][], radius: number, groupDetails : IPhoneBrand[]){
         const chordLayout = chord().padAngle(10 / (radius-10))
                                     .sortSubgroups(descending)
                                     .sortChords(descending)
@@ -18,9 +18,9 @@ export class ChordDiagramViewModel{
     
         if(chords){
             chords.groups.forEach((group, index)=>{
-                this.chordGroups.push(new ChordGroupViewModel(group, radius, groupDetails[index].name, groupDetails[index].colour));
+                this.phoneBrandVms.push(new PhoneBrandViewModel(group, radius, groupDetails[index].name, groupDetails[index].colour));
             });
-            this.chordVms = chords.map(chord=>new ChordViewModel(chord, radius, this.chordGroups[chord.source.index], this.chordGroups[chord.target.index]));
+            this.chordVms = chords.map(chord=>new ChordViewModel(chord, radius, this.phoneBrandVms[chord.source.index], this.phoneBrandVms[chord.target.index]));
         }
     }
 }

@@ -1,4 +1,4 @@
-import { IGroupDetails } from "../view-models/chord-group-details.interface";
+import { IPhoneBrand } from "../interfaces/phone-brand.interface";
 
 export class PhoneData {
   public static matrix = [
@@ -12,7 +12,7 @@ export class PhoneData {
     [54, 12, 4, 21, 23, 78, 34, 532], // Other
   ];
 
-  public static groups : IGroupDetails[]= [
+  public static groups : IPhoneBrand[]= [
     {
       name: 'Apple',
       colour: '#8a3ffc'

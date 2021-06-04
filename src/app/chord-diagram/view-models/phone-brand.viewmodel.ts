@@ -2,9 +2,9 @@ import { ChordGroup } from "d3-chord";
 import { arc } from "d3-shape";
 
 
-import { IGroupDetails } from "./chord-group-details.interface";
+import { IPhoneBrand } from "../interfaces/phone-brand.interface";
 
-export class ChordGroupViewModel implements IGroupDetails{
+export class PhoneBrandViewModel implements IPhoneBrand{
 
     public path:string | null;
 

@@ -1,6 +1,6 @@
 
 import { Chord, ribbon } from "d3-chord";
-import { ChordGroupViewModel } from "./chord-group.viewmodel";
+import { PhoneBrandViewModel } from "./phone-brand.viewmodel";
 
 export class ChordViewModel {
 
@@ -10,12 +10,12 @@ export class ChordViewModel {
 
     public get tooltip(): string{
 
-        const sourceToTarget = `${this.chord.source.value} ${this.targetGroup.name} → ${this.sourceGroup.name}`;
-        const targetToSource = `\n${this.chord.target.value} ${this.sourceGroup.name} → ${this.targetGroup.name}`;
-        return  this.sourceGroup.name === this.targetGroup.name? sourceToTarget : sourceToTarget + targetToSource;
+        const sourceToTarget = `${this.chord.source.value} ${this.targetPhoneBrand.name} → ${this.sourcePhoneBrand.name}`;
+        const targetToSource = `\n${this.chord.target.value} ${this.sourcePhoneBrand.name} → ${this.targetPhoneBrand.name}`;
+        return  this.sourcePhoneBrand.name === this.targetPhoneBrand.name? sourceToTarget : sourceToTarget + targetToSource;
     }
 
-    constructor(private chord: Chord, radius: number, public sourceGroup: ChordGroupViewModel, public targetGroup: ChordGroupViewModel){
+    constructor(private chord: Chord, radius: number, public sourcePhoneBrand: PhoneBrandViewModel, public targetPhoneBrand: PhoneBrandViewModel){
 
         this.innerRadius = radius - 10;
 
